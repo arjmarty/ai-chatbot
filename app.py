@@ -27,6 +27,14 @@ if prompt := st.chat_input("Hi! How may I help you?", accept_file=True, file_typ
     with st.chat_message("user"):
         st.markdown(prompt)
 
+#Display assistant response in chat message container
+with st.chat_message("assistant"):
+    stream = client.chat.completions.create(
+        model=st.session_state["openai_model"], 
+        messages=[{"role":m["role"], "content": m["content"]} 
+                  for m in st.session_state.messages
+                  ], stream=True)
+
 
 # first_message = st.chat_input("Hi! How may I help you?", accept_file=True, file_type=None)
 

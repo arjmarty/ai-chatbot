@@ -14,18 +14,30 @@ if "openai_model" not in st.session_state:
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-first_message = st.chat_input("Hi! How may I help you?", accept_file=True, file_type=None)
+#Display chat messages from history
+for message in st.session_state.messages:
+    with st.chat_message(message["role"]):
+        st.markdown(message["content"])
 
-intro_msg = "Hello and Welcome to COARE!"
+#user input
+if prompt := st.chat_input("Hi! How may I help you?", accept_file=True, file_type=None):
+    #add user message to chat history
+    st.session_state.messages.append({"role": "user", "content": prompt})
+    #Display user message in chat message container
+    with st.chat_message("user"):
+        st.markdown(prompt)
 
-if st.button("Press this button"):
-    st.write(intro_msg)
 
-if first_message and first_message.text:
-    st.markdown(first_message.text)
+# first_message = st.chat_input("Hi! How may I help you?", accept_file=True, file_type=None)
 
-if first_message and first_message["files"]:
-    st.image(first_message["files"][0])
+# intro_msg = "Hello and Welcome to COARE!"
 
-with st.chat_message("user"):
-    st.write("Hello stranger!")
+
+# if first_message and first_message.text:
+#     st.markdown(first_message.text)
+
+# if first_message and first_message["files"]:
+#     st.image(first_message["files"][0])
+
+# with st.chat_message("user"):
+#     st.write("Hello stranger!")

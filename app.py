@@ -1,6 +1,8 @@
 import streamlit as st
+import os
 import openai
 
+openai.api_key = os.environ['OPENAI_API_KEY']
 first_message = st.chat_input("Hi! How may I help you?", accept_file=True, file_type=None)
 
 intro_msg = "Hello and Welcome to COARE!"

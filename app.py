@@ -36,7 +36,7 @@ with st.chat_message("assistant"):
                   ], stream=True)
 
 
-# first_message = st.chat_input("Hi! How may I help you?", accept_file=True, file_type=None)
+first_message = st.chat_input("Hi! How may I help you?", accept_file=True, file_type=None)
 
 # intro_msg = "Hello and Welcome to COARE!"
 
